@@ -16,7 +16,6 @@ export default {
 <style scoped lang="scss">
 nav {
   position: relative;
-  z-index: 99;
   display: flex;
   justify-content: center;
   width: 100vw;

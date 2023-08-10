@@ -78,6 +78,5 @@ export default {
   background-position: center;
   background-size: cover;
   background-color: rgb(71, 71, 71);
-  z-index: -1;
 }
 </style>
