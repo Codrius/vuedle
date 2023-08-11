@@ -36,16 +36,8 @@
             +1 p/s: {{ idleUpgradeCost }}
           </button>
         </div>
-        <div class="upgrade-multipliers-container">
-          <button v-on:click="upgradeClickMultiplier(0.1)">
-            Upgrade Click Multiplier
-          </button>
-          <button v-on:click="upgradeIdleMultiplier(0.1)">
-            Upgrade Idle Multiplier
-          </button>
-        </div>
         <div class="reset-container">
-          <button v-on:click="reset()">Reset</button>
+          <button v-on:click="reset()">Prestige</button>
           <button v-on:click="fullReset()">Full Reset</button>
         </div>
       </div>
@@ -115,14 +107,37 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: white;
+  height: 100vh;
+  background-color: rgb(100, 100, 100);
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  box-shadow: 3px 3px 3px black;
+}
+
+img {
+  background-color: grey;
+  border-bottom: 3px solid black;
+  border-top: 3px solid black;
+  box-shadow: 3px 3px 3px black;
 }
 
 .buttons-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 3px solid black;
+  width: 100%;
+}
+
+.upgrade-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.reset-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 </style>

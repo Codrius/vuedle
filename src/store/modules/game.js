@@ -49,18 +49,22 @@ const mutations = {
         state.idleMultiplier += num;
     },
     reset(state) {
-        state.currency = 0;
-        state.clickMultiplier += Number((state.clickUpgrades / 10).toFixed(1));
-        state.idleMultiplier += Number((state.idleUpgrades / 10).toFixed(1));
-        state.clickUpgrades = 0;
-        state.idleUpgrades = 0;
+        if (confirm(`Are you sure you want to prestige? You will lose all currency and upgrades, and gain:\n+${(state.clickUpgrades / 10).toFixed(1)} bonus to click multiplier\n+${(state.idleUpgrades / 10).toFixed(1)} bonus to idle multiplier`)) {
+            state.currency = 0;
+            state.clickMultiplier += Number((state.clickUpgrades / 10).toFixed(1));
+            state.idleMultiplier += Number((state.idleUpgrades / 10).toFixed(1));
+            state.clickUpgrades = 0;
+            state.idleUpgrades = 0;
+        }
     },
     fullReset(state) {
-        state.currency = 0;
-        state.clickUpgrades = 0;
-        state.idleUpgrades = 0;
-        state.clickMultiplier = 1;
-        state.idleMultiplier = 1;
+        if (confirm("Are you sure you want to fully reset the game?")) {
+            state.currency = 0;
+            state.clickUpgrades = 0;
+            state.idleUpgrades = 0;
+            state.clickMultiplier = 1;
+            state.idleMultiplier = 1;
+        }
     }
 }
 const actions = {}
