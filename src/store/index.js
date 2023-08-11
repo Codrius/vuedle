@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import gameModule from './modules/game.js'
+import game from './modules/game.js'
 
 Vue.use(Vuex)
 
@@ -14,6 +14,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    game: gameModule
+    game
   }
 })

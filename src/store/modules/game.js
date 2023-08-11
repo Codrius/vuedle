@@ -1,40 +1,67 @@
-export default game = {
-    state: {
-        currency: 0,
-        clickUpgrades: 0,
-        idleUpgrades: 0,
-        clickMultiplier: 1,
-        idleMultiplier: 1
+const state = {
+    currency: 0,
+    clickUpgrades: 0,
+    idleUpgrades: 0,
+    clickMultiplier: 1,
+    idleMultiplier: 1
+}
+
+const getters = {
+    currency({ currency }) {
+        return currency.toFixed(1);
     },
-    getters: {
+    clickUpgrades({ clickUpgrades }) {
+        return clickUpgrades;
     },
-    mutations: {
-        clicked(state) {
-            state.currency += (1 + state.clickUpgrades) * state.clickMultiplier;
-        },
-        perSecond(state) {
-            state.currency += state.idleUpgrades * state.idleMultiplier;
-        },
-        upgradeClicks(state, num) {
-            state.clickUpgrades += num;
-        },
-        upgradeIdle(state, num) {
-            state.idleUpgrades += num;
-        },
-        upgradeClickMultiplier(state, num) {
-            state.clickMultiplier += num;
-        },
-        upgradeIdleMultipier(state, num) {
-            state.idleMultiplier += num;
-        },
-        reset(state) {
-            state.currency = 0;
-            state.clickUpgrades = 0;
-            state.idleUpgrades = 0;
-        }
+    idleUpgrades({ idleUpgrades }) {
+        return idleUpgrades;
     },
-    actions: {
+    clickMultiplier({ clickMultiplier }) {
+        return clickMultiplier.toFixed(1);
     },
-    modules: {
+    idleMultiplier({ idleMultiplier }) {
+        return idleMultiplier.toFixed(1);
     }
+}
+const mutations = {
+    clicked(state) {
+        state.currency += (1 + state.clickUpgrades) * state.clickMultiplier;
+    },
+    perSecond(state) {
+        state.currency += state.idleUpgrades * state.idleMultiplier;
+    },
+    upgradeClicks(state, num) {
+        state.clickUpgrades += num;
+    },
+    upgradeIdle(state, num) {
+        state.idleUpgrades += num;
+    },
+    upgradeClickMultiplier(state, num) {
+        state.clickMultiplier += num;
+    },
+    upgradeIdleMultiplier(state, num) {
+        state.idleMultiplier += num;
+    },
+    reset(state) {
+        state.currency = 0;
+        state.clickUpgrades = 0;
+        state.idleUpgrades = 0;
+    },
+    fullReset(state) {
+        state.currency = 0;
+        state.clickUpgrades = 0;
+        state.idleUpgrades = 0;
+        state.clickMultiplier = 1;
+        state.idleMultiplier = 1;
+    }
+}
+const actions = {}
+const modules = {}
+
+export default {
+    state,
+    getters,
+    mutations,
+    actions,
+    modules
 }
