@@ -30,11 +30,17 @@ const mutations = {
     perSecond(state) {
         state.currency += state.idleUpgrades * state.idleMultiplier;
     },
-    upgradeClicks(state, num) {
-        state.clickUpgrades += num;
+    upgradeClicks(state, [num, cost]) {
+        if (state.currency >= cost) {
+            state.currency -= cost;
+            state.clickUpgrades += num;
+        }
     },
-    upgradeIdle(state, num) {
-        state.idleUpgrades += num;
+    upgradeIdle(state, [num, cost]) {
+        if (state.currency >= cost) {
+            state.currency -= cost;
+            state.idleUpgrades += num;
+        }
     },
     upgradeClickMultiplier(state, num) {
         state.clickMultiplier += num;
@@ -44,6 +50,8 @@ const mutations = {
     },
     reset(state) {
         state.currency = 0;
+        state.clickMultiplier += Number((state.clickUpgrades / 10).toFixed(1));
+        state.idleMultiplier += Number((state.idleUpgrades / 10).toFixed(1));
         state.clickUpgrades = 0;
         state.idleUpgrades = 0;
     },

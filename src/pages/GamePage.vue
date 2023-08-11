@@ -22,13 +22,19 @@
         </p>
       </div>
       <div class="display-multipliers-container">
-        Click Multiplier: {{ clickMultiplier }} | Idle Multiplier:
-        {{ idleMultiplier }}
+        <p>
+          Click Multiplier: {{ clickMultiplier }} | Idle Multiplier:
+          {{ idleMultiplier }}
+        </p>
       </div>
       <div class="buttons-container">
         <div class="upgrade-container">
-          <button v-on:click="upgradeClicks(1)">Upgrade Clicks</button>
-          <button v-on:click="upgradeIdle(1)">Upgrade Idle</button>
+          <button v-on:click="upgradeClicks([1, clickUpgradeCost])">
+            +1CP: {{ clickUpgradeCost }}
+          </button>
+          <button v-on:click="upgradeIdle([1, idleUpgradeCost])">
+            +1 p/s: {{ idleUpgradeCost }}
+          </button>
         </div>
         <div class="upgrade-multipliers-container">
           <button v-on:click="upgradeClickMultiplier(0.1)">
@@ -65,6 +71,12 @@ export default {
       "clickMultiplier",
       "idleMultiplier",
     ]),
+    clickUpgradeCost: function () {
+      return (1.01 ** (10 * this.clickUpgrades) * 50).toFixed(0);
+    },
+    idleUpgradeCost: function () {
+      return (1.01 ** (10 * this.idleUpgrades) * 50).toFixed(0);
+    },
   },
   methods: {
     ...mapMutations([
@@ -111,6 +123,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 </style>
