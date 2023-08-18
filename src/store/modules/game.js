@@ -1,3 +1,5 @@
+import axios from "axios"
+
 const state = {
     currency: 0,
     clickUpgrades: 0,
@@ -67,7 +69,25 @@ const mutations = {
         }
     }
 }
-const actions = {}
+const actions = {
+    attemptSave(context) {
+        axios.post("http://127.0.0.1:4000/save", {
+            state: { ...context.state },
+            jwt: localStorage.getItem("vuedleJwt"),
+            config: { withCredentials: true }
+        })
+            .then((res) => {
+                alert("Saved Successfully");
+                console.log(res);
+            })
+            .catch((error) => { // If error, set the error states
+                alert(error);
+            });
+    },
+    attemptLoad() {
+
+    }
+}
 const modules = {}
 
 export default {

@@ -40,13 +40,16 @@
           <button v-on:click="reset()">Prestige</button>
           <button v-on:click="fullReset()">Full Reset</button>
         </div>
+        <div class="save-container">
+          <button v-on:click="attemptSave()">Save Game</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "GamePage",
@@ -62,6 +65,7 @@ export default {
       "idleUpgrades",
       "clickMultiplier",
       "idleMultiplier",
+      "username",
     ]),
     clickUpgradeCost: function () {
       return (1.01 ** (10 * this.clickUpgrades) * 50).toFixed(0);
@@ -81,6 +85,7 @@ export default {
       "reset",
       "fullReset",
     ]),
+    ...mapActions(["attemptSave"]),
   },
   mounted() {
     this.gameTick = setInterval(this.perSecond, 1000);
@@ -95,8 +100,8 @@ export default {
 .game-root {
   display: flex;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-image: url("@/assets/logo.png");
   background-repeat: round;
   background-size: 1vw;
@@ -107,7 +112,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: rgb(100, 100, 100);
   border-left: 4px solid black;
   border-right: 4px solid black;
@@ -136,6 +141,12 @@ img {
 }
 
 .reset-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.save-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

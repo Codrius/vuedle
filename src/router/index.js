@@ -13,6 +13,31 @@ const routes = [
     name: 'home',
     component: HomePage
   },
+  // Something like the following if you want to use containers...
+  // {
+  //   path: '/',
+  //   name: 'home',
+  //   component: DefaultContainer,
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'Home',
+  //       component: HomePage
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/game',
+  //   name: 'game',
+  //   component: GameContainer,
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'Game',
+  //       component: GamePage
+  //     }
+  //   ]
+  // },
   {
     path: '/login',
     name: 'Login',

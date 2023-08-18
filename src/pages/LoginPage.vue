@@ -1,44 +1,53 @@
 <template>
   <div class="login-root">
     <div class="login-form">
-      <h1>Welcome to Vuedle! Please log in:</h1>
+      <h1>Welcome to Vuedle! Please Login:</h1>
+      <div class="error">{{ this.emailError }}</div>
       <div class="input-container">
-        <label for="Username">Username: </label>
+        <label for="Email">Email: </label>
         <input
-          class="Username login-input"
-          v-model="username"
-          v-on:keyup.enter="attemptLogin"
+          class="Email login-input"
+          v-model="email"
+          v-on:keyup.enter="attemptLogin({ email, password })"
         />
       </div>
-      <br />
+      <div class="error">{{ this.passwordError }}</div>
       <div class="input-container">
+        <div class="password-error"></div>
         <label for="Password">Password: </label>
         <input
           class="Password login-input"
           type="password"
           v-model="password"
-          v-on:keyup.enter="attemptLogin"
+          v-on:keyup.enter="attemptLogin({ email, password })"
         />
       </div>
       <br />
-      <button style="width: 100%" v-on:click="attemptLogin">Login</button>
+      <button
+        style="width: 100%"
+        v-on:click="attemptLogin({ email, password })"
+      >
+        Login
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
     };
   },
   methods: {
-    attemptLogin: function () {
-      console.log(this.username);
-      console.log(this.password);
-    },
+    ...mapActions(["attemptLogin"]),
+  },
+  computed: {
+    ...mapGetters(["emailError", "passwordError"]),
   },
 };
 </script>
@@ -53,6 +62,14 @@ export default {
     display: block;
     min-width: 90px;
   }
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 1.5rem;
+  color: red;
 }
 
 .input-container {

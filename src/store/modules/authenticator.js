@@ -1,8 +1,10 @@
-import axios from "axios"
+import axios from "axios";
+import router from "../../router/index.js";
 
 const state = {
     jwt: "",
-    username: "",
+    refreshToken: "",
+    username: "Guest",
     userid: "",
     email: "",
     usernameError: "",
@@ -12,6 +14,9 @@ const state = {
 const getters = {
     jwt({ jwt }) {
         return jwt;
+    },
+    refreshToken({ refreshToken }) {
+        return refreshToken;
     },
     username({ username }) {
         return username;
@@ -35,6 +40,9 @@ const getters = {
 const mutations = {
     setJwt(state, newjwt) {
         state.jwt = newjwt;
+    },
+    setRefreshToken(state, newRefreshToken) {
+        state.refreshToken = newRefreshToken;
     },
     setUsername(state, newUsername) {
         state.username = newUsername;
@@ -67,18 +75,41 @@ const actions = {
             email: email,
             username: username,
             password: password,
-            config: { withCredentials: true },
         }) // If successful, set the user state and clear errors
             .then((res) => {
                 context.commit("setEmail", email);
                 context.commit("setUsername", username);
                 context.commit("setUserid", res.data.id);
-                context.commit("setJwt", res.data.token);
+                localStorage.setItem("vuedleJwt", res.data.jwtToken);
+                localStorage.setItem("vuedleRefreshToken", res.data.refreshToken);
                 context.commit("clearErrors");
                 console.log(res);
+                router.push("/game");
             })
             .catch((error) => { // If error, set the error states
                 context.commit("setUsernameError", error.response.data.username);
+                context.commit("setEmailError", error.response.data.email);
+                context.commit("setPasswordError", error.response.data.password);
+                console.log(error.response.data);
+            });
+    },
+    attemptLogin(context, { email, password }) {
+        axios.post("http://127.0.0.1:4000/login", {
+            email,
+            password,
+            config: { withCredentials: true },
+        }) // If successful, set the user state and clear errors
+            .then((res) => {
+                context.commit("setEmail", email);
+                context.commit("setUsername", res.data.username);
+                context.commit("setUserid", res.data.id);
+                localStorage.setItem("vuedleJwt", res.data.jwtToken);
+                localStorage.setItem("vuedleRefreshToken", res.data.refreshToken);
+                context.commit("clearErrors");
+                console.log(res);
+                router.push("/game");
+            })
+            .catch((error) => { // If error, set the error states
                 context.commit("setEmailError", error.response.data.email);
                 context.commit("setPasswordError", error.response.data.password);
                 console.log(error.response.data);
