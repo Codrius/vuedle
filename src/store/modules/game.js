@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "@/utils/axios"
 
 const state = {
     currency: 0,
@@ -67,25 +67,54 @@ const mutations = {
             state.clickMultiplier = 1;
             state.idleMultiplier = 1;
         }
+    },
+    fullResetPromptless(state) {
+        state.currency = 0;
+        state.clickUpgrades = 0;
+        state.idleUpgrades = 0;
+        state.clickMultiplier = 1;
+        state.idleMultiplier = 1;
+    },
+    setState(state, newstate) {
+        Object.assign(state, newstate);
     }
 }
 const actions = {
-    attemptSave(context) {
-        axios.post("http://127.0.0.1:4000/save", {
-            state: { ...context.state },
+    async autoSave(context) {
+        try {
+            const res = await axios.post("save", {
+                state: { ...context.state },
+                jwt: context.getters.jwt,
+            })
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    async attemptSave(context) {
+        try {
+            const res = await axios.post("save", {
+                state: { ...context.state },
+                jwt: context.getters.jwt,
+            })
+            alert("Saved Successfully!")
+            console.log(res);
+        } catch (error) { // If error, set the error states
+            alert(error);
+        }
+    },
+    attemptLoad(context) {
+        axios.post("load", {
             jwt: localStorage.getItem("vuedleJwt"),
             config: { withCredentials: true }
         })
             .then((res) => {
-                alert("Saved Successfully");
+                context.commit("setState", res.data)
                 console.log(res);
             })
             .catch((error) => { // If error, set the error states
                 alert(error);
             });
-    },
-    attemptLoad() {
-
     }
 }
 const modules = {}

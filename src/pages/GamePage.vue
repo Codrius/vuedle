@@ -11,8 +11,8 @@
       <div class="operators-container">
         <p>
           Click Power:
-          {{ ((1 + clickUpgrades) * clickMultiplier).toFixed(1) }} | Currency
-          Per Second: {{ (idleUpgrades * idleMultiplier).toFixed(1) }}
+          {{ ((1 + clickUpgrades) * clickMultiplier).toFixed(1) }} | Idle Power:
+          {{ (idleUpgrades * idleMultiplier).toFixed(1) }}
         </p>
       </div>
       <div class="display-upgrades-container">
@@ -33,15 +33,16 @@
             +1CP: {{ clickUpgradeCost }}
           </button>
           <button v-on:click="upgradeIdle([1, idleUpgradeCost])">
-            +1 p/s: {{ idleUpgradeCost }}
+            +1IP: {{ idleUpgradeCost }}
           </button>
         </div>
         <div class="reset-container">
           <button v-on:click="reset()">Prestige</button>
           <button v-on:click="fullReset()">Full Reset</button>
         </div>
-        <div class="save-container">
+        <div class="user-action-container">
           <button v-on:click="attemptSave()">Save Game</button>
+          <button v-on:click="logOut()">Log Out</button>
         </div>
       </div>
     </div>
@@ -56,6 +57,7 @@ export default {
   data() {
     return {
       gameTick: -1,
+      autoSaver: -1,
     };
   },
   computed: {
@@ -85,13 +87,15 @@ export default {
       "reset",
       "fullReset",
     ]),
-    ...mapActions(["attemptSave"]),
+    ...mapActions(["autoSave", "attemptSave", "logOut"]),
   },
   mounted() {
     this.gameTick = setInterval(this.perSecond, 1000);
+    this.autoSaver = setInterval(this.autoSave, 30000);
   },
   beforeDestroy() {
     clearInterval(this.gameTick);
+    clearInterval(this.autoSave);
   },
 };
 </script>
@@ -146,7 +150,7 @@ img {
   justify-content: space-evenly;
 }
 
-.save-container {
+.user-action-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
