@@ -50,7 +50,7 @@ const mutations = {
     upgradeIdleMultiplier(state, num) {
         state.idleMultiplier += num;
     },
-    reset(state) {
+    reset(state) { // Soft reset to gain multipliers
         if (confirm(`Are you sure you want to prestige? You will lose all currency and upgrades, and gain:\n+${(state.clickUpgrades / 10).toFixed(1)} bonus to click multiplier\n+${(state.idleUpgrades / 10).toFixed(1)} bonus to idle multiplier`)) {
             state.currency = 0;
             state.clickMultiplier += Number((state.clickUpgrades / 10).toFixed(1));
@@ -59,7 +59,7 @@ const mutations = {
             state.idleUpgrades = 0;
         }
     },
-    fullReset(state) {
+    fullReset(state) { // Hard reset everything back to scratch
         if (confirm("Are you sure you want to fully reset the game?")) {
             state.currency = 0;
             state.clickUpgrades = 0;
@@ -68,19 +68,19 @@ const mutations = {
             state.idleMultiplier = 1;
         }
     },
-    fullResetPromptless(state) {
+    fullResetPromptless(state) { // Used for logouts
         state.currency = 0;
         state.clickUpgrades = 0;
         state.idleUpgrades = 0;
         state.clickMultiplier = 1;
         state.idleMultiplier = 1;
     },
-    setState(state, newstate) {
+    setState(state, newstate) { // Used for loading
         Object.assign(state, newstate);
     }
 }
 const actions = {
-    async autoSave(context) {
+    async autoSave(context) { // Promptless saving for autosave
         try {
             const res = await axios.post("save", {
                 state: { ...context.state },
@@ -91,7 +91,7 @@ const actions = {
             console.log(error);
         }
     },
-    async attemptSave(context) {
+    async attemptSave(context) { // Prompted saving for save button
         try {
             const res = await axios.post("save", {
                 state: { ...context.state },
@@ -99,7 +99,7 @@ const actions = {
             })
             alert("Saved Successfully!")
             console.log(res);
-        } catch (error) { // If error, set the error states
+        } catch (error) { // If error, inform the user
             alert(error);
         }
     },
@@ -112,7 +112,7 @@ const actions = {
                 context.commit("setState", res.data)
                 console.log(res);
             })
-            .catch((error) => { // If error, set the error states
+            .catch((error) => { // If error, inform the user
                 alert(error);
             });
     }

@@ -55,21 +55,21 @@ const mutations = {
     setEmail(state, newEmail) {
         state.email = newEmail;
     },
-    setUsernameError(state, usernameError) {
+    setUsernameError(state, usernameError) { // These are used for login/register pages
         state.usernameError = usernameError;
     },
-    setEmailError(state, emailError) {
+    setEmailError(state, emailError) { // These are used for login/register pages
         state.emailError = emailError;
     },
-    setPasswordError(state, passwordError) {
+    setPasswordError(state, passwordError) { // These are used for login/register pages
         state.passwordError = passwordError;
     },
-    clearErrors(state) {
+    clearErrors(state) { // Once logged in or registered, clear the errors you may see on those screens.
         state.usernameError = "";
         state.emailError = "";
         state.passwordError = "";
     },
-    logOut(state) {
+    logOut(state) { // Destroy all user-related state when logging out
         state.jwt = "";
         state.refreshToken = "";
         state.username = "Guest";
@@ -79,7 +79,7 @@ const mutations = {
         localStorage.removeItem("vuedleJwt");
         localStorage.removeItem("vuedleRefreshToken");
     },
-    readAuthFromLocal(state) {
+    readAuthFromLocal(state) { // Read the entire user state from local storage.  Useful for page reloads.
         const authState = JSON.parse(localStorage.getItem("vuedleAuthState"));
         Object.assign(state, authState);
         state.jwt = localStorage.getItem("vuedleJwt");
@@ -115,6 +115,7 @@ const actions = {
             console.log(error.response.data);
         }
     },
+    // Post to the login API
     async attemptLogin(context, { email, password }) {
         try {
             const res = await axios.post("login", {
@@ -142,7 +143,7 @@ const actions = {
             console.log(error);
         }
     },
-    logOut(context) {
+    logOut(context) { // Destroy user/auth related state
         if (context.getters.email !== "") {
             context.commit("logOut");
             localStorage.removeItem("vuedleJwt");

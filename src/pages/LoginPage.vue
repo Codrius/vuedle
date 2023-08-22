@@ -47,6 +47,7 @@ export default {
     ...mapActions(["attemptLogin"]),
   },
   computed: {
+    // These are intended to display any errors with logging in to the user
     ...mapGetters(["emailError", "passwordError"]),
   },
 };

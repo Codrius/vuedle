@@ -21,6 +21,6 @@ const store = new Vuex.Store({
   }
 })
 
-connectAxiosInstanceToStore(store);
+connectAxiosInstanceToStore(store); // Set up axios interceptors, mainly for auth purposes
 
 export default store;

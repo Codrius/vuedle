@@ -6,9 +6,9 @@
       <p>
         Vuedle is my portfolio project whose purpose was learning the Redmer
         Productions development stack. The result was Vuedle, a Vue based idle
-        game demo, with an Express backend, databased with MongoDB. This website
-        stands as a testament to my initiative and commitment to becoming a
-        valuable member of the Redmer Productions team.
+        game demo, with an Express backend and databased with MongoDB. This
+        website stands as a testament to my initiative and commitment to
+        becoming a valuable member of the Redmer Productions team.
       </p>
     </div>
   </div>

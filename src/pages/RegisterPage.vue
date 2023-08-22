@@ -57,6 +57,7 @@ export default {
     ...mapActions(["attemptRegister"]),
   },
   computed: {
+    // These are intended to display any errors with registration
     ...mapGetters(["emailError", "usernameError", "passwordError"]),
   },
 };

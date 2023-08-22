@@ -90,10 +90,12 @@ export default {
     ...mapActions(["autoSave", "attemptSave", "logOut"]),
   },
   mounted() {
+    // Create an auto saver and grant the player idle power per second currency
     this.gameTick = setInterval(this.perSecond, 1000);
     this.autoSaver = setInterval(this.autoSave, 30000);
   },
   beforeDestroy() {
+    // Stop the interval functions while not playing the game
     clearInterval(this.gameTick);
     clearInterval(this.autoSave);
   },

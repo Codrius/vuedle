@@ -16,6 +16,7 @@ export default {
     ...mapActions(["attemptLoad"]),
   },
   mounted() {
+    // On visiting the site or reload, read your identity from file and load game
     this.readAuthFromLocal();
     if (localStorage.getItem("vuedleAuthState")) {
       this.attemptLoad();
