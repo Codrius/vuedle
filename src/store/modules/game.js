@@ -103,18 +103,14 @@ const actions = {
             alert(error);
         }
     },
-    attemptLoad(context) {
-        axios.post("load", {
-            jwt: localStorage.getItem("vuedleJwt"),
-            config: { withCredentials: true }
-        })
-            .then((res) => {
-                context.commit("setState", res.data)
-                console.log(res);
-            })
-            .catch((error) => { // If error, inform the user
-                alert(error);
-            });
+    async attemptLoad(context) {
+        try {
+            const res = await axios.post("load")
+            context.commit("setState", res.data)
+            console.log(res);
+        } catch (error) { // If error, inform the user
+            alert(error);
+        }
     }
 }
 const modules = {}

@@ -69,7 +69,9 @@ export default {
       "idleMultiplier",
       "username",
     ]),
-    clickUpgradeCost: function () {
+    
+    // These are the formulas to calculate the slowly creeping exponential cost of upgrades
+    clickUpgradeCost: function () { 
       return (1.01 ** (10 * this.clickUpgrades) * 50).toFixed(0);
     },
     idleUpgradeCost: function () {

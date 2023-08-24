@@ -44,6 +44,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+// I am aware that HTML forms exist, but a big part of this project's goal was to build as much of it as I could inside of Vue.  This is also why the "Guts" of the game lives almost entirely in the front end, rather than on the back end where a user wouldn't be able to manipulate the state.
 
 export default {
   data() {

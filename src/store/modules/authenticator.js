@@ -69,7 +69,7 @@ const mutations = {
         state.emailError = "";
         state.passwordError = "";
     },
-    logOut(state) { // Destroy all user-related state when logging out
+    deleteUserState(state) { // Delete all user-related state
         state.jwt = "";
         state.refreshToken = "";
         state.username = "Guest";
@@ -124,9 +124,9 @@ const actions = {
             }) // If successful, set the user state and clear errors
             context.commit("setEmail", email);
             context.commit("setUsername", res.data.username);
-            await context.commit("setUserId", res.data.id);
-            await context.commit("setJwt", res.data.jwtToken);
-            await context.commit("setRefreshToken", res.data.refreshToken);
+            context.commit("setUserId", res.data.id);
+            context.commit("setJwt", res.data.jwtToken);
+            context.commit("setRefreshToken", res.data.refreshToken);
             localStorage.setItem("vuedleAuthState", JSON.stringify({
                 email,
                 username: res.data.username,
@@ -145,10 +145,7 @@ const actions = {
     },
     logOut(context) { // Destroy user/auth related state
         if (context.getters.email !== "") {
-            context.commit("logOut");
-            localStorage.removeItem("vuedleJwt");
-            localStorage.removeItem("vuedleRefreshToken");
-            localStorage.removeItem("vuedleAuthState");
+            context.commit("deleteUserState");
             context.commit("fullResetPromptless");
             alert("You have been logged out.");
         }
