@@ -1,8 +1,9 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
+const baseURL = process.env.VUE_APP_BASEURL
 const instance = axios.create({
-    baseURL: process.env.VUE_APP_BASEURL
+    baseURL
 });
 
 async function refreshIfExpired(store, token) {
@@ -11,7 +12,7 @@ async function refreshIfExpired(store, token) {
         const currentTime = (Date.now() / 1000);
         if (decodedJwt.exp <= (currentTime + 5)) { // If JWT is expiring within 5 seconds, refresh it.
             try {
-                const res = await axios.post("refresh", {
+                const res = await axios.post(baseURL + "refresh", {
                     refreshToken: store.getters.refreshToken,
                     id: store.getters.userid
                 });
@@ -20,7 +21,7 @@ async function refreshIfExpired(store, token) {
                 return res.data.jwtToken;
             } catch (error) { // If the refresh token is invalid, log out the user.
                 console.log(error);
-                store.commit("logOut");
+                store.dispatch("logOut");
                 alert("An error has ocurred, logging out.");
             }
         }

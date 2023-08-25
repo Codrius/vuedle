@@ -29,8 +29,8 @@ const mutations = {
     clicked(state) {
         state.currency += (1 + state.clickUpgrades) * state.clickMultiplier;
     },
-    perSecond(state) {
-        state.currency += state.idleUpgrades * state.idleMultiplier;
+    perTenthSecond(state) {
+        state.currency += (state.idleUpgrades * state.idleMultiplier) / 10;
     },
     upgradeClicks(state, [num, cost]) {
         if (state.currency >= cost) {

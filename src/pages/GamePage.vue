@@ -69,9 +69,9 @@ export default {
       "idleMultiplier",
       "username",
     ]),
-    
+
     // These are the formulas to calculate the slowly creeping exponential cost of upgrades
-    clickUpgradeCost: function () { 
+    clickUpgradeCost: function () {
       return (1.01 ** (10 * this.clickUpgrades) * 50).toFixed(0);
     },
     idleUpgradeCost: function () {
@@ -81,7 +81,7 @@ export default {
   methods: {
     ...mapMutations([
       "clicked",
-      "perSecond",
+      "perTenthSecond",
       "upgradeClicks",
       "upgradeIdle",
       "upgradeClickMultiplier",
@@ -93,7 +93,7 @@ export default {
   },
   mounted() {
     // Create an auto saver and grant the player idle power per second currency
-    this.gameTick = setInterval(this.perSecond, 1000);
+    this.gameTick = setInterval(this.perTenthSecond, 100);
     this.autoSaver = setInterval(this.autoSave, 30000);
   },
   beforeDestroy() {
