@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomePage from '../pages/HomePage.vue'
+import LoginPage from '../pages/LoginPage.vue'
+import RegisterPage from '../pages/RegisterPage.vue'
+import GamePage from '../pages/GamePage.vue'
 
 Vue.use(VueRouter)
 
@@ -8,15 +11,47 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomePage
+  },
+  // Something like the following if you want to use containers...
+  // {
+  //   path: '/',
+  //   name: 'home',
+  //   component: DefaultContainer,
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'Home',
+  //       component: HomePage
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/game',
+  //   name: 'game',
+  //   component: GameContainer,
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'Game',
+  //       component: GamePage
+  //     }
+  //   ]
+  // },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginPage
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/register',
+    name: 'Register',
+    component: RegisterPage
+  },
+  {
+    path: '/game',
+    name: 'Game',
+    component: GamePage
   }
 ]
 
