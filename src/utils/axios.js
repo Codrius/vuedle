@@ -1,9 +1,8 @@
-require('dotenv').config();
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 const instance = axios.create({
-    baseURL: process.env.baseURL
+    baseURL: process.env.VUE_APP_BASEURL
 });
 
 async function refreshIfExpired(store, token) {
@@ -12,7 +11,7 @@ async function refreshIfExpired(store, token) {
         const currentTime = (Date.now() / 1000);
         if (decodedJwt.exp <= (currentTime + 5)) { // If JWT is expiring within 5 seconds, refresh it.
             try {
-                const res = await axios.post(baseURL, {
+                const res = await axios.post("refresh", {
                     refreshToken: store.getters.refreshToken,
                     id: store.getters.userid
                 });
