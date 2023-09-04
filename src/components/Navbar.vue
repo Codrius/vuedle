@@ -19,7 +19,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import "bootstrap-vue";
 
 export default {
   name: "NavBar",
