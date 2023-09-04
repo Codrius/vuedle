@@ -37,10 +37,6 @@
           <button v-on:click="reset()">Prestige</button>
           <button v-on:click="fullReset()">Full Reset</button>
         </div>
-        <div class="user-action-container">
-          <button v-on:click="attemptSave()">Save Game</button>
-          <button v-on:click="logOut()">Log Out</button>
-        </div>
       </div>
     </div>
   </div>
@@ -65,6 +61,7 @@ export default {
       "clickMultiplier",
       "idleMultiplier",
       "username",
+      "userid"
     ]),
 
     // These are the formulas to calculate the slowly creeping exponential cost of upgrades
@@ -86,7 +83,7 @@ export default {
       "reset",
       "fullReset",
     ]),
-    ...mapActions(["autoSave", "attemptSave", "logOut"]),
+    ...mapActions(["autoSave"]),
   },
   mounted() {
     // Create an auto saver and grant the player idle power per second currency

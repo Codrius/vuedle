@@ -82,11 +82,10 @@ const mutations = {
 const actions = {
     async autoSave(context) { // Promptless saving for autosave
         try {
-            const res = await axios.post("save", {
-                state: { ...context.state },
-                jwt: context.getters.jwt,
-            })
+            if (context.getters.userid){
+            const res = await axios.post("save", {state: { ...context.state }})
             console.log(res);
+        }
         } catch (error) {
             console.log(error);
         }
@@ -94,8 +93,7 @@ const actions = {
     async attemptSave(context) { // Prompted saving for save button
         try {
             const res = await axios.post("save", {
-                state: { ...context.state },
-                jwt: context.getters.jwt,
+                state: { ...context.state }
             })
             alert("Saved Successfully!")
             console.log(res);

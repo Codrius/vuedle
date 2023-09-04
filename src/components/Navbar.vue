@@ -8,8 +8,12 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-nav pills justified align="center">  
         <b-nav-item active-class="active" to="/game">Game</b-nav-item>
-        <b-nav-item active-class="active" to="/register">Register</b-nav-item>
-        <b-nav-item active-class="active" to="/login">Login</b-nav-item>
+        <b-nav-item-dropdown right text="Profile"> 
+          <b-dropdown-item v-if="!userid" active-class="active" to="/register">Register</b-dropdown-item>
+          <b-dropdown-item v-if="!userid" active-class="active" to="/login">Login</b-dropdown-item>
+          <b-dropdown-item v-if="userid" v-on:click="attemptSave()">Save</b-dropdown-item>
+          <b-dropdown-item v-if="userid" v-on:click="logOut()">Log Out</b-dropdown-item>
+        </b-nav-item-dropdown>
       </b-nav>
     </b-collapse>
 
@@ -18,13 +22,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "NavBar",
   computed: {
-    ...mapGetters(["username"]),
+    ...mapGetters(["username", "userid"]),
   },
+  methods: {
+    ...mapActions(["attemptSave","logOut"])
+  }
 };
 </script>
 
