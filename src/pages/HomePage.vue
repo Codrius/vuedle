@@ -1,6 +1,6 @@
 <template>
   <div class="home-root">
-    <div class="page-contents">
+    <div class="page-contents container text-center col-xxl-4 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
       <h1>Hi! Welcome to Vuedle!</h1>
       <h2>What is Vuedle?</h2>
       <p>
@@ -20,13 +20,9 @@
 <style scoped lang="scss">
 .home-root {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 100vh;
-  width: 100vw;
   background-image: url("@/assets/logo.png");
-  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-color: rgb(71, 71, 71);
@@ -36,9 +32,7 @@
   flex-direction: column;
   align-items: center;
   background-color: rgb(100, 100, 100);
-  height: 100vh;
-  width: 40vw;
-  min-width: 600px;
+  height: 100%;
   border-left: 4px solid black;
   border-right: 4px solid black;
   box-shadow: 3px 3px 3px black;
