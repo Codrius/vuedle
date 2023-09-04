@@ -1,31 +1,28 @@
 <template>
-  <div class="game-root">
-    <div class="game">
-      <img
-        src="@/assets/logo.png"
-        width="450"
-        height="450"
-        v-on:click="clicked()"
-      />
-      <p>Currency: {{ currency }}</p>
-      <div class="operators-container">
-        <p>
-          Click Power:
-          {{ ((1 + clickUpgrades) * clickMultiplier).toFixed(1) }} | Idle Power:
-          {{ (idleUpgrades * idleMultiplier).toFixed(1) }}
-        </p>
-      </div>
-      <div class="display-upgrades-container">
-        <p>
-          Click Upgrades: {{ clickUpgrades }} | Idle Upgrades:
-          {{ idleUpgrades }}
-        </p>
-      </div>
-      <div class="display-multipliers-container">
-        <p>
-          Click Multiplier: {{ clickMultiplier }} | Idle Multiplier:
-          {{ idleMultiplier }}
-        </p>
+  <div id="game-root">
+    <div id="game" class="container text-center col-xxl-4 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+      <img class="container-fluid col-12" src="@/assets/logo.png" v-on:click="clicked()"/>
+      <div id="stats" class="container-fluid col-12">
+        <p>Currency: {{ currency }}</p>
+        <div class="operators-container">
+          <p>
+            Click Power:
+            {{ ((1 + clickUpgrades) * clickMultiplier).toFixed(1) }} | Idle Power:
+            {{ (idleUpgrades * idleMultiplier).toFixed(1) }}
+          </p>
+        </div>
+        <div class="display-upgrades-container">
+          <p>
+            Click Upgrades: {{ clickUpgrades }} | Idle Upgrades:
+            {{ idleUpgrades }}
+          </p>
+        </div>
+        <div class="display-multipliers-container">
+          <p>
+            Click Multiplier: {{ clickMultiplier }} | Idle Multiplier:
+            {{ idleMultiplier }}
+          </p>
+        </div>
       </div>
       <div class="buttons-container">
         <div class="upgrade-container">
@@ -105,26 +102,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.game-root {
+#game-root {
   display: flex;
   justify-content: center;
-  height: 100%;
-  width: 100%;
-  background-image: url("@/assets/logo.png");
-  background-repeat: round;
-  background-size: 1vw;
+  height: 100vh;
+  background-image: url("@/assets/background.png");
+  background-position: center;
+  background-size: cover;
   background-color: rgb(71, 71, 71);
 }
 
-.game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  background-color: rgb(100, 100, 100);
+#game {
   border-left: 4px solid black;
   border-right: 4px solid black;
   box-shadow: 3px 3px 3px black;
+  background-color: rgb(100, 100, 100);
+  height: 100%;
+  padding: 0px;
 }
 
 img {
@@ -134,29 +128,5 @@ img {
   box-shadow: 3px 3px 3px black;
 }
 
-.buttons-container {
-  display: flex;
-  flex-direction: column;
-  padding-top: 30px;
-  border-top: 3px solid black;
-  width: 100%;
-}
 
-.upgrade-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.reset-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.user-action-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
 </style>
