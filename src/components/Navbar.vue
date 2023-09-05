@@ -1,14 +1,11 @@
 <template>
   <b-navbar class="px-3" toggleable="sm" type="dark" variant="dark">
     <b-navbar-brand active-class="active" to="/">Vuedle</b-navbar-brand>
-
-    <b-nav-text class="d-sm-none">Currently logged in as: {{ username }}</b-nav-text>
-
     <b-navbar-toggle target="nav-collapse"/>
     <b-collapse id="nav-collapse" is-nav>
-      <b-nav pills justified align="center">  
+      <b-nav pills justified>  
         <b-nav-item active-class="active" to="/game">Game</b-nav-item>
-        <b-nav-item-dropdown right text="Profile"> 
+        <b-nav-item-dropdown right :text="username"> 
           <b-dropdown-item v-if="!userid" active-class="active" to="/register">Register</b-dropdown-item>
           <b-dropdown-item v-if="!userid" active-class="active" to="/login">Login</b-dropdown-item>
           <b-dropdown-item v-if="userid" v-on:click="attemptSave()">Save</b-dropdown-item>
@@ -16,8 +13,6 @@
         </b-nav-item-dropdown>
       </b-nav>
     </b-collapse>
-
-    <b-nav-text class="d-none d-sm-inline">Currently logged in as: {{ username }}</b-nav-text>
   </b-navbar>
 </template>
 
@@ -37,5 +32,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
 </style>
