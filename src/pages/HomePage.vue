@@ -31,7 +31,7 @@
 
 <style scoped lang="scss">
 .home-root {
-  height: 100vh;
+  height: calc(100vh - 56.5px);
   background-image: url("@/assets/background.png");
   background-position: center;
   background-size: cover;

@@ -100,8 +100,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh - 56.5px);
   background-image: url("@/assets/logo.png");
   background-repeat: no-repeat;
   background-position: center;
