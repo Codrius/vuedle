@@ -4,7 +4,7 @@ import router from "../../router/index.js";
 const state = {
     jwt: "",
     refreshToken: "",
-    username: "Guest",
+    username: "Account",
     userid: "",
     email: "",
     usernameError: "",
@@ -72,7 +72,7 @@ const mutations = {
     deleteUserState(state) { // Delete all user-related state
         state.jwt = "";
         state.refreshToken = "";
-        state.username = "Guest";
+        state.username = "Account";
         state.userid = "";
         state.email = "";
         localStorage.removeItem("vuedleAuthState");

@@ -10,13 +10,13 @@
           </b-row>
           <b-row class="accordion mt-4" role="tablist">
             <b-collapse id="accordion-1" accordion="jumbotron-accordion" role="tabpanel">
-              <p class="mb-0 text-center">My name is Cody Sewell.  I'm a budding web developer who lives in Florida, and I am available to do work for you.  You can contact me at <strong>codysewell1@gmail.com</strong></p>
+              <p class="px-2 mb-0 text-center">My name is Cody Sewell.  I'm a budding web developer who lives in Florida, and I am available to do work for you.  You can contact me at <strong>codysewell1@gmail.com</strong></p>
             </b-collapse>
             <b-collapse id="accordion-2" accordion="jumbotron-accordion" role="tabpanel">
-              <p class="mb-0 text-center">You're the wonderful individual who landed on this website and are about to be impressed by what I was able to learn in only about a month.</p>
+              <p class="px-2 mb-0 text-center">You're the wonderful individual who landed on this website and are about to be impressed by what I was able to learn in only about a month.</p>
             </b-collapse>
             <b-collapse id="accordion-3" accordion="jumbotron-accordion" role="tabpanel">
-              <p class="mb-0 text-center">Vuedle is my portfolio project whose purpose was learning the Redmer Productions development stack.  The result was Vuedle, a Vue based idle game demo, with an Express backend and databased with MongoDB. This website stands as a testament to my initiative and commitment to becoming a valuable member of any development team that would have me.</p>
+              <p class="px-2 mb-0 text-center">Vuedle is my portfolio project whose purpose was learning the Redmer Productions development stack.  The result was Vuedle, a Vue based idle game demo, with an Express backend and databased with MongoDB. This website stands as a testament to my initiative and commitment to becoming a valuable member of any development team that would have me.</p>
             </b-collapse>
           </b-row>
       </b-jumbotron>
