@@ -17,7 +17,7 @@
                 <p class="px-2 mb-0 text-center">You're the wonderful individual who landed on this website, and might hopefully give me some feedback on what I can improve around here.  You can find my email address in <strong>"Who am I?"</strong> if you have any suggestions!</p>
               </b-collapse>
               <b-collapse id="accordion-3" accordion="jumbotron-accordion" role="tabpanel">
-                <p class="px-2 mb-0 text-center">Vuedle is my portfolio project created within the span of about a month whose purpose was learning a web development full stack.  This website was the result; a Vue based frontend with an Express backend, databased using MongoDB. This website stands as a testament to my initiative and ability to become a valuable member of any development team that would have me.</p>
+                <p class="px-2 mb-0 text-center">Vuedle is my portfolio project whose purpose was learning a web development full stack.  This website was the result; a Vue based frontend with an Express backend, databased using MongoDB. This project stands as a testament to my initiative and ability to become a valuable member of any development team that would have me.</p>
               </b-collapse>
             </b-row>
         </b-jumbotron>

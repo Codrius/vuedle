@@ -3,7 +3,9 @@
     <b-row class="vertical-aligner" align-v="center">
       <b-container fluid class="growth-limiter">
         <b-container fluid="sm" class="game text-center text-light px-0">
-          <img class="container-fluid py-4" src="@/assets/logo.png" v-on:click="clicked()"/>
+          <b-container fluid class="clickzone" v-on:click="clicked()">
+            <img class="container-fluid py-4" src="@/assets/logo.png"/>
+          </b-container>
           <b-container fluid class="stats py-2">
             <b-row class="py-2"><b-col>Currency: {{ currency }}</b-col></b-row>
             <b-row class="py-2">
@@ -115,6 +117,10 @@ height: calc(100vh - 56.5px);
 }
 
 img {
+  max-width: calc(100vh - 340.5px);
+}
+
+.clickzone {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
