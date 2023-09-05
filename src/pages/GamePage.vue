@@ -1,45 +1,38 @@
 <template>
-  <div id="game-root">
-    <div id="game" class="container text-center col-xxl-4 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
-      <img class="container-fluid col-12" src="@/assets/logo.png" v-on:click="clicked()"/>
-      <div id="stats" class="container-fluid col-12">
-        <p>Currency: {{ currency }}</p>
-        <div class="operators-container">
-          <p>
-            Click Power:
-            {{ ((1 + clickUpgrades) * clickMultiplier).toFixed(1) }} | Idle Power:
-            {{ (idleUpgrades * idleMultiplier).toFixed(1) }}
-          </p>
-        </div>
-        <div class="display-upgrades-container">
-          <p>
-            Click Upgrades: {{ clickUpgrades }} | Idle Upgrades:
-            {{ idleUpgrades }}
-          </p>
-        </div>
-        <div class="display-multipliers-container">
-          <p>
-            Click Multiplier: {{ clickMultiplier }} | Idle Multiplier:
-            {{ idleMultiplier }}
-          </p>
-        </div>
-      </div>
-      <div class="buttons-container">
-        <div class="upgrade-container">
-          <button v-on:click="upgradeClicks([1, clickUpgradeCost])">
-            +1CP: {{ clickUpgradeCost }}
-          </button>
-          <button v-on:click="upgradeIdle([1, idleUpgradeCost])">
-            +1IP: {{ idleUpgradeCost }}
-          </button>
-        </div>
-        <div class="reset-container">
-          <button v-on:click="reset()">Prestige</button>
-          <button v-on:click="fullReset()">Full Reset</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <b-container fluid class="game-root m-0">
+    <b-row class="vertical-aligner" align-v="center">
+      <b-container fluid class="growth-limiter">
+        <b-container fluid="sm" class="game text-center text-light px-0">
+          <img class="container-fluid py-4" src="@/assets/logo.png" v-on:click="clicked()"/>
+          <b-container fluid class="stats py-2">
+            <b-row class="py-2"><b-col>Currency: {{ currency }}</b-col></b-row>
+            <b-row class="py-2">
+              <b-col>Click Power: {{ ((1 + clickUpgrades) * clickMultiplier).toFixed(1) }}</b-col>
+              <b-col>Idle Power: {{ (idleUpgrades * idleMultiplier).toFixed(1) }}</b-col>
+            </b-row>
+            <b-row class="py-2">
+              <b-col>Click Upgrades: {{ clickUpgrades }}</b-col>
+              <b-col>Idle Upgrades: {{ idleUpgrades }}</b-col>
+            </b-row>
+            <b-row class="py-2">
+              <b-col>Click Multiplier: {{ clickMultiplier }}</b-col>
+              <b-col>Idle Multiplier: {{ idleMultiplier }}</b-col>
+            </b-row>
+          </b-container>
+          <b-container fluid class="buttons py-2">
+            <b-row class="py-2">
+              <b-col><b-button variant="dark" v-on:click="upgradeClicks([1, clickUpgradeCost])">+1CP: {{ clickUpgradeCost }}</b-button></b-col>
+              <b-col><b-button variant="dark" v-on:click="upgradeIdle([1, idleUpgradeCost])">+1IP: {{ idleUpgradeCost }}</b-button></b-col>
+            </b-row>
+            <b-row class="py-2">
+              <b-col><b-button variant="dark" v-on:click="reset()">Prestige</b-button></b-col>
+              <b-col><b-button variant="dark" v-on:click="fullReset()">Full Reset</b-button></b-col>
+            </b-row>
+          </b-container>
+        </b-container>
+      </b-container>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -99,31 +92,34 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#game-root {
-  display: flex;
-  justify-content: center;
-  height: 100vh;
+.game-root {
+  height: calc(100vh - 56.5px);
   background-image: url("@/assets/background.png");
   background-position: center;
   background-size: cover;
   background-color: rgb(71, 71, 71);
 }
 
-#game {
+.vertical-aligner {
+height: calc(100vh - 56.5px);
+}
+
+.game {
   border-left: 4px solid black;
   border-right: 4px solid black;
-  box-shadow: 3px 3px 3px black;
-  background-color: rgb(100, 100, 100);
-  height: 100%;
-  padding: 0px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.growth-limiter {
+    max-width: 960px;
 }
 
 img {
-  background-color: grey;
-  border-bottom: 3px solid black;
-  border-top: 3px solid black;
-  box-shadow: 3px 3px 3px black;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-
+.stats {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
 </style>
