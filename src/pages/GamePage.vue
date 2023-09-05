@@ -117,7 +117,8 @@ height: calc(100vh - 56.5px);
 }
 
 img {
-  max-width: calc(100vh - 340.5px);
+  max-width: calc(100vh - 388.5px);
+  max-width: calc(100vh - 388.5px);
 }
 
 .clickzone {
