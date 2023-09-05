@@ -4,7 +4,7 @@
       <b-container fluid class="growth-limiter">
         <b-container fluid="sm" class="game text-center text-light px-0">
           <b-container fluid class="clickzone" v-on:click="clicked()">
-            <img class="container-fluid py-4" src="@/assets/logo.png"/>
+            <img draggable="false" class="container-fluid py-4" src="@/assets/logo.png"/>
           </b-container>
           <b-container fluid class="stats py-2">
             <b-row class="py-2"><b-col>Currency: {{ currency }}</b-col></b-row>
@@ -118,11 +118,14 @@ height: calc(100vh - 56.5px);
 
 img {
   max-width: calc(100vh - 388.5px);
-  max-width: calc(100vh - 388.5px);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .clickzone {
   background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .stats {
