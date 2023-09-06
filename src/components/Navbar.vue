@@ -10,6 +10,7 @@
     <b-collapse id="nav-collapse" is-nav>
     
       <b-nav pills justified>  <!-- Left aligned b-nav -->
+        <b-nav-item exact-active-class="active" to="/">About</b-nav-item>
         <b-nav-item active-class="active" to="/game">Game</b-nav-item>
       </b-nav>
 
