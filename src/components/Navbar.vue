@@ -49,4 +49,8 @@ img {
 .nav-link{ 
   color: white;
 }
+
+.nav-link:hover {
+  color: rgb(203, 211, 218);
+}
 </style>
