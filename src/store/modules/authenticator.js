@@ -140,7 +140,7 @@ const actions = {
         } catch (error) { // If error, set the error states
             context.commit("setEmailError", error.response.data.email);
             context.commit("setPasswordError", error.response.data.password);
-            console.log(error);
+            console.log(error.response.data);
         }
     },
     logOut(context) { // Destroy user/auth related state

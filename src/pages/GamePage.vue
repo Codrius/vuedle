@@ -1,7 +1,7 @@
 <template>
   <b-container fluid class="game-root m-0">
     <b-row class="vertical-aligner" align-v="center">
-      <b-container fluid class="growth-limiter">
+      <b-container class="growth-limiter">
         <b-container fluid="sm" class="game text-center text-light px-0">
           <b-container fluid class="clickzone" v-on:click="clicked()">
             <img draggable="false" class="container-fluid py-4" src="@/assets/logo.png"/>
@@ -106,14 +106,14 @@ export default {
 height: calc(100vh - 56.5px);
 }
 
+.growth-limiter {
+    max-width: 960px;
+}
+
 .game {
   border-left: 4px solid black;
   border-right: 4px solid black;
   background-color: rgba(0, 0, 0, 0.75);
-}
-
-.growth-limiter {
-    max-width: 960px;
 }
 
 img {

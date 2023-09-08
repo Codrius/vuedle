@@ -1,45 +1,70 @@
 <template>
-  <div class="register-root">
-    <div class="register-form">
-      <h1>Welcome to Vuedle! Please Register:</h1>
-      <div class="error">{{ this.emailError }}</div>
-      <div class="input-container">
-        <label for="Email">Email: </label>
-        <input
-          class="Email register-input"
-          v-model="email"
-          v-on:keyup.enter="attemptRegister({ email, username, password })"
-        />
-      </div>
-      <div class="error">{{ this.usernameError }}</div>
-      <div class="input-container">
-        <label for="Username">Username: </label>
-        <input
-          class="Username register-input"
-          v-model="username"
-          v-on:keyup.enter="attemptRegister({ email, username, password })"
-        />
-      </div>
-      <div class="error">{{ this.passwordError }}</div>
-      <div class="input-container">
-        <div class="password-error"></div>
-        <label for="Password">Password: </label>
-        <input
-          class="Password register-input"
-          type="password"
-          v-model="password"
-          v-on:keyup.enter="attemptRegister({ email, username, password })"
-        />
-      </div>
-      <br />
-      <button
-        style="width: 100%"
-        v-on:click="attemptRegister({ email, username, password })"
-      >
-        Register
-      </button>
-    </div>
-  </div>
+  <b-container fluid class="register-root">
+
+    <b-row class="vertical-aligner justify-content-center" align-v="center">
+
+      <b-card class="register-card text-center">
+
+        <template #header>
+          <h3>Welcome to Vuedle! Please Register:</h3>
+        </template>
+
+        <b-card-body>
+          <b-form-group
+            :invalid-feedback="emailInputError"
+            :state="emailValidator"
+          >
+            <b-form-input 
+              id="email-input" 
+              v-model="email" 
+              placeholder="Email" 
+              :state="emailValidator"
+            />
+          </b-form-group>
+
+          <b-form-group
+            :invalid-feedback="usernameInputError"
+            :state="usernameValidator"
+          >
+            <b-form-input 
+              id="username-input" 
+              v-model="username" 
+              placeholder="Username" 
+              :state="usernameValidator"
+            />
+          </b-form-group>
+
+          <b-form-group
+            :invalid-feedback="passwordInputError"
+            :state="passwordValidator"
+          >
+            <b-form-input 
+              id="password-input" 
+              type="password"
+              v-model="password" 
+              placeholder="Password" 
+              :state="passwordValidator"
+            />
+          </b-form-group>
+
+          <b-button 
+            :disabled="verifyAll" 
+            class="mt-3 mb-4" 
+            variant="primary" 
+            v-on:click="attemptRegister({ email, username, password })"
+            >Register</b-button>
+
+          <br>
+
+          <b-link class="card-link" to="/login">Already a member?</b-link>
+
+        </b-card-body>
+
+      </b-card>
+
+    </b-row>
+
+  </b-container>
 </template>
 
 <script>
@@ -52,6 +77,7 @@ export default {
       email: "",
       username: "",
       password: "",
+      regEx: /^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
     };
   },
   methods: {
@@ -59,52 +85,68 @@ export default {
   },
   computed: {
     // These are intended to display any errors with registration
-    ...mapGetters(["emailError", "usernameError", "passwordError"]),
+    ...mapGetters(["emailError"]),
+
+    emailValidator() {
+      if (this.emailError) {
+        return false;
+      } else if (this.email.length === 0) {
+        return null;
+      }
+      return this.regEx.test(this.email);
+    },
+
+    emailInputError() {
+      if (this.emailError) {
+        return "Email already exists";
+      }
+      return "Invalid Email";
+    },
+
+    usernameValidator() {
+      if (this.username.length === 0) {
+        return null;
+      }
+      return (this.username.length <= 12);
+    },
+
+    usernameInputError() {
+      return "Max 12 characters!";
+    },
+
+    passwordValidator() {
+      if (this.password.length === 0) {
+        return null;
+      }
+      return (this.password.length >= 6);
+    },
+
+    passwordInputError() {
+      return "Minimum 6 characters!"
+    },
+
+    verifyAll() {
+      return !(this.regEx.test(this.email) && this.usernameValidator && this.passwordValidator);
+    }
   },
 };
 </script>
 
 <style scoped lang="scss">
-.register-form {
-  background-color: #eee;
-  padding: 20px;
-  border: 4px solid rgb(37, 37, 37);
-  box-shadow: 10px 10px 10px black;
-  label {
-    display: block;
-    min-width: 90px;
-  }
-}
-
-.error {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 1.5rem;
-  color: red;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.register-input {
-  width: 100%;
-}
-
 .register-root {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: calc(100vh - 56.5px);
-  background-image: url("@/assets/logo.png");
-  background-repeat: no-repeat;
+  background-image: url("@/assets/background2.png");
   background-position: center;
   background-size: cover;
   background-color: rgb(71, 71, 71);
+}
+
+.vertical-aligner {
+height: calc(100vh - 56.5px);
+}
+
+.register-card {
+  max-width: 20rem;
+  border: 2px solid black;
 }
 </style>
