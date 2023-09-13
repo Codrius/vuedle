@@ -1,7 +1,7 @@
 <template>
-  <b-container fluid class="home-root m-0">
-    <b-container fluid class="growth-limiter">
-      <b-container fluid="sm">
+  <b-container fluid class="home-root p-0 m-0">
+    <b-container fluid class="growth-limiter p-0">
+      <b-container fluid="sm" class="p-0 m-0">
         <b-jumbotron id="jumbotron1" header="Vuedle" lead="A project by Cody Sewell" text-variant="light" class="pb-3">
             <hr class="my-4">
             <b-row class="text-center">
@@ -11,7 +11,7 @@
             </b-row>
             <b-row class="accordion mt-4" role="tablist">
               <b-collapse id="accordion-1" accordion="jumbotron-accordion" role="tabpanel">
-                <p class="px-2 mb-0 text-center">My name is Cody Sewell.  I'm a budding web developer who lives in Florida, and I am available to do work for you.  You can contact me at <strong>codysewell1@gmail.com</strong></p>
+                <p class="px-2 mb-0 text-center">My name is Cody Sewell.  I'm a budding web developer who lives in Florida, and available to do work for you.  You can contact me at <strong>codysewell1@gmail.com</strong></p>
               </b-collapse>
               <b-collapse id="accordion-2" accordion="jumbotron-accordion" role="tabpanel">
                 <p class="px-2 mb-0 text-center">You're the wonderful individual who landed on this website, and might hopefully give me some feedback on what I can improve around here.  You can find my email address in <strong>"Who am I?"</strong> if you have any suggestions!</p>

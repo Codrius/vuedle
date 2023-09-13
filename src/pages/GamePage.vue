@@ -1,7 +1,7 @@
 <template>
-  <b-container fluid class="game-root m-0">
-    <b-row class="vertical-aligner" align-v="center">
-      <b-container class="growth-limiter">
+  <b-container fluid class="game-root p-0 m-0">
+    <b-row class="vertical-aligner m-0" align-v="center">
+      <b-container class="growth-limiter p-0">
         <b-container fluid="sm" class="game text-center text-light px-0">
           <b-container fluid class="clickzone" v-on:click="clicked()">
             <img draggable="false" class="container-fluid py-4" src="@/assets/logo.png"/>
@@ -80,13 +80,13 @@ export default {
     ]),
     ...mapActions(["autoSave"]),
   },
-  mounted() {
+  created() {
     // Create an auto saver and grant the player idle power per second currency
     this.gameTick = setInterval(this.perTenthSecond, 100);
     this.autoSaver = setInterval(this.autoSave, 30000);
   },
   beforeDestroy() {
-    // Stop the interval functions while not playing the game
+    // Stop the interval functions before destroying game instance
     clearInterval(this.gameTick);
     clearInterval(this.autoSave);
   },
